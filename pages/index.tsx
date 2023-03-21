@@ -306,7 +306,7 @@ export function Home_() {
   return (
     <>
       <Head>
-        <title>Chatbot UI</title>
+        <title>ChatGPT (in Mashmatrix)</title>
         <meta
           name="description"
           content="ChatGPT but better."
