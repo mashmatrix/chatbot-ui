@@ -4,10 +4,12 @@ import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { Conversation, Message, OpenAIModel, OpenAIModelID, OpenAIModels } from "@/types";
 import { cleanConversationHistory, cleanSelectedConversation } from "@/utils/app";
 import { IconArrowBarLeft, IconArrowBarRight } from "@tabler/icons-react";
+import { useSession, signIn } from "next-auth/react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export function Home_() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [selectedConversation, setSelectedConversation] = useState<Conversation>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -373,4 +375,18 @@ export default function Home() {
       )}
     </>
   );
+}
+
+export default function Home() {
+  const { status } = useSession();
+  const router = useRouter()
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.replace('/api/auth/signin') ;
+    }
+  }, [status, router]);
+  if (status !== "authenticated") {
+    return <></>;
+  }
+  return <Home_ />;
 }
