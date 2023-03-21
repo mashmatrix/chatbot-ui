@@ -70,7 +70,7 @@ export const Chat: FC<Props> = ({
                 </div>
 
                 <div className="text-4xl text-center text-neutral-600 dark:text-neutral-200 pt-[160px] sm:pt-[280px]">
-                  {models.length === 0 ? "Loading..." : "Chatbot UI"}
+                  {models.length === 0 ? "Loading..." : "ChatGPT"}
                 </div>
               </>
             ) : (
