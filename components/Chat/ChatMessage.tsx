@@ -3,6 +3,8 @@ import { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { CodeBlock } from "../Markdown/CodeBlock";
+import { AI } from "./AI";
+import { You } from "./You";
 
 interface Props {
   message: Message;
@@ -16,7 +18,7 @@ export const ChatMessage: FC<Props> = ({ message, lightMode }) => {
       style={{ overflowWrap: "anywhere" }}
     >
       <div className="w-full sm:w-4/5 md:w-3/5 lg:w-[600px] xl:w-[800px] flex px-4">
-        <div className="mr-1 sm:mr-2 font-bold min-w-[40px]">{message.role === "assistant" ? "AI:" : "You:"}</div>
+        <div className="mr-1 sm:mr-2 font-bold min-w-[40px]">{message.role === "assistant" ? <AI /> : <You />}</div>
 
         <div className="prose dark:prose-invert mt-[-2px]">
           {message.role === "user" ? (
